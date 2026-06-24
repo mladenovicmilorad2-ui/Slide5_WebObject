@@ -1,0 +1,695 @@
+/* Connections Game - Vanilla CSS */
+
+/* CVS Health Sans Font Declarations */
+@font-face {
+  font-family: 'CVS Health Sans';
+  src: url('./fonts/CVSHealthSans_Rg.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CVS Health Sans Medium';
+  src: url('./fonts/CVSHealthSans_Md.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --max-width: 1200px;
+  --content-max-width: 800px;
+  --text-max-width: 800px;
+  --TEXT: #000;
+  --radius: 32px;
+  --yellow: #ffcd11;
+  --lightyellow: #ffe672;
+
+  /* CVS Health Connection Group Colors */
+  --neutral-10: #dedede;
+  --neutral-90: #333333;
+  --canary-20: #f9dd6e;
+  --forest-20: #89e55c;
+  --indigo-20: #91c8ff;
+  --violet-20: #cca7db;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  background: #ffffff;
+  font-family: 'CVS Health Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 100vh;
+  width: 100vw;
+  color: black;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+h1 {
+  margin: 0;
+  padding: 0.5vh 0;
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-weight: 500;
+  font-size: clamp(18px, 3.5vw, 28px);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+h2 {
+  margin: 2rem auto 0;
+  max-width: 800px;
+  font-size: 20px;
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-weight: 500;
+}
+
+p {
+  font-size: 14px;
+  margin: 1rem auto;
+  max-width: var(--text-max-width);
+  line-height: 1.5;
+  text-align: left;
+  font-family: 'CVS Health Sans', sans-serif;
+  font-weight: 400;
+  min-height: 20px;
+  color: black;
+}
+
+p.center {
+  text-align: center;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  font-size: clamp(16px, 2.5vw, 20px) !important;
+  font-weight: 500 !important;
+  margin: 2vh auto !important;
+  padding: 0 !important;
+}
+
+a {
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--yellow);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 0.5vh 0.5vw;
+  box-sizing: border-box;
+}
+
+.hr {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 205, 17, 0) 10%,
+    rgba(255, 205, 17, 1) 50%,
+    rgba(255, 205, 17, 0) 90%
+  );
+  width: 100%;
+  height: 1px;
+}
+
+.wrapper {
+  padding: 0;
+  margin: 0;
+  width: min(95vw, 95vh * 1.3);
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8vh;
+}
+
+.wrapper.center {
+  text-align: center;
+}
+
+.wrapper.sm {
+  max-width: min(95vw, 90vh * 1.8);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Only apply padding when showing completed groups */
+.wrapper.sm:has(.grid-container-links) {
+  padding-top: 18vh;
+  box-sizing: border-box;
+  max-width: min(95vw, 1000px);
+}
+
+.dark-wrapper {
+  padding: 2rem 10rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: var(--radius);
+}
+
+.dark-wrapper.center {
+  text-align: center;
+}
+
+.bg-cover {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('./assets/catepillar-equipment.jpg');
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  box-shadow: inset 0px 0px 122px 50px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-cover.metrics {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('./assets/catepillar-metrics.jpg');
+  background-size: cover;
+  background-position: right center;
+}
+
+/* CONNECTIONS GAME STYLES */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.6vw 0.6vw;
+  width: 100%;
+  max-width: min(90vw, 80vh * 1.4);
+  height: 70vh;
+  margin: 0 auto;
+  align-self: center;
+}
+
+.grid-container-links {
+  width: 100%;
+  min-width: 800px;
+  max-width: min(95vw, 1000px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.group-link {
+  height: 120px;
+  max-height: 140px;
+  border-radius: 12px;
+  background-color: var(--neutral-10);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 10px 0;
+  padding: 15px 20px;
+  transition: transform 0.15s;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.group-link.hover {
+  cursor: pointer;
+}
+
+.group-link.hover:hover {
+  transform: scale(1.025);
+}
+
+.group-link.sm {
+  height: 75px;
+  margin-bottom: 1rem;
+}
+
+.group-link .title {
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+  width: calc(100% - 10px);
+  text-align: center;
+  overflow: hidden;
+  padding: 0 5px;
+  word-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+.group-link .desc {
+  font-family: 'CVS Health Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  width: calc(100% - 10px);
+  text-align: center;
+  line-height: 1.2;
+  overflow: hidden;
+  padding: 0 5px;
+  word-wrap: break-word;
+  word-break: break-word;
+  text-transform: none;
+}
+
+/* Connection Group Color Classes */
+.group-link.canary {
+  background-color: var(--canary-20);
+  color: black;
+}
+
+.group-link.forest {
+  background-color: var(--forest-20);
+  color: black;
+}
+
+.group-link.indigo {
+  background-color: var(--indigo-20);
+  color: black;
+}
+
+.group-link.violet {
+  background-color: var(--violet-20);
+  color: black;
+}
+
+.word-box {
+  display: flex;
+  text-align: center;
+  color: black;
+  height: 100%;
+  width: 100%;
+}
+
+.word {
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-weight: 500;
+  font-size: clamp(14px, min(2.8vw, 3.2vh), 21px);
+  border-radius: 8px;
+  background-color: var(--neutral-10);
+  padding: 1vh 1vw;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  color: black;
+  text-align: center;
+  text-transform: none;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.1;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.word:hover {
+  background-color: var(--neutral-90);
+  color: white;
+}
+
+.word.selected {
+  background-color: var(--neutral-90);
+  color: white;
+}
+
+/* Text size classes based on character length */
+.word.text-normal {
+  font-size: 21px !important; /* Most words use this size */
+}
+
+.word.text-medium {
+  font-size: 18px !important; /* For longer words (26-35 chars) */
+}
+
+.word.text-small {
+  font-size: 15px !important; /* Only for extremely long words (36+ chars) */
+}
+
+.mistakes {
+  color: black;
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-weight: 500;
+  margin: 0;
+  padding: 0.3vh 0;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+  transition: all 0.3s ease;
+  font-size: clamp(12px, 2.2vw, 16px);
+  z-index: 1000;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mistakes.error {
+  color: #ff4444 !important;
+  animation: shake 0.5s ease-in-out;
+}
+
+.mistakes.error .mistake-circle {
+  background-color: #ff4444 !important;
+}
+
+#guesses-count {
+  display: none; /* Hide the number counter */
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.mistake-holder {
+  display: flex; /* Show the circle container */
+  gap: 8px;
+  align-items: center;
+}
+
+.mistake-circle {
+  background-color: black;
+  width: min(14px, 2vh);
+  height: min(14px, 2vh);
+  border-radius: 50%;
+}
+
+.group-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0.3vh 0;
+  flex-wrap: wrap;
+  gap: 0.5vw;
+  flex-shrink: 0;
+}
+
+.btn-columns {
+  margin: 1rem auto;
+  padding: 0;
+  width: 100%;
+  max-width: 800px;
+}
+
+.btn-columns .left {
+  text-align: left;
+  width: 33.3333%;
+  display: inline-block;
+}
+
+.btn-columns .middle {
+  text-align: center;
+  width: 33.3333%;
+  display: inline-block;
+}
+
+.btn-columns .right {
+  text-align: right;
+  width: 33.3333%;
+  display: inline-block;
+}
+
+.btn,
+button.btn {
+  border: 0;
+  user-select: none;
+  cursor: pointer;
+  margin: 0 0.5vw;
+  background-color: #ffcd11;
+  color: black;
+  padding: 1vh 2vw;
+  vertical-align: middle;
+  border-radius: 20px;
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-weight: 500;
+  font-size: clamp(12px, 2.5vw, 18px);
+  overflow: hidden;
+  transition: all 0.15s;
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.btn.sm {
+  font-size: min(2.5vw, 15px);
+  padding: min(1.5vw, 0.35rem) min(2vw, 1rem);
+  font-weight: 600;
+}
+
+.btn.sm i {
+  font-size: 10px;
+  margin: 0 0.25rem 0.15rem;
+  vertical-align: middle;
+}
+
+.btn i {
+  font-size: 13px;
+  margin: 0 0.25rem 0.15rem;
+  vertical-align: middle;
+}
+
+.btn:hover {
+  background-color: var(--lightyellow);
+}
+
+.btn:hover:active {
+  transform: scale(0.95);
+}
+
+.list-arrows {
+  list-style: none;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.list-arrows li {
+  padding: 0.5rem 0;
+  position: relative;
+  font-size: 14px;
+  font-family: 'CVS Health Sans', sans-serif;
+  font-weight: 400;
+}
+
+/* Utility classes */
+.center {
+  text-align: center;
+}
+
+.fader {
+  opacity: 1;
+}
+
+/* IE Blocks */
+.block-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.ie-block {
+  background-color: #252525;
+  border: 1px solid #575757;
+  width: 200px;
+  transition: all 0.15s;
+}
+
+.ie-block:hover {
+  cursor: pointer;
+  transform: scale(1.025);
+  border-color: var(--yellow);
+}
+
+.ie-block-img {
+  height: 85px;
+  background-color: black;
+  background-size: cover;
+  background-position: center center;
+}
+
+.ie-block-content {
+  padding: 1rem;
+  text-align: left;
+}
+
+.ie-block-content .type {
+  color: white;
+  font-family: 'CVS Health Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  margin: 0 0 0.5rem;
+}
+
+.ie-block-content .title {
+  color: var(--yellow);
+  font-family: 'CVS Health Sans Medium', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.video-container {
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+video {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.checkbox-container input[type='checkbox'] {
+  margin-right: 1rem;
+}
+
+ol.left {
+  text-align: left;
+}
+
+ol.sm li:first-child {
+  opacity: 0.5;
+}
+
+ol.sm li:last-child {
+  opacity: 0.25;
+}
+
+ol.sm textarea {
+  min-height: 35px;
+}
+
+ol li {
+  font-family: 'CVS Health Sans', sans-serif;
+  font-weight: 400;
+}
+
+textarea {
+  width: 100%;
+  min-height: 75px;
+  margin: 6px 0;
+  padding: 0.5rem;
+  font-family: 'CVS Health Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.results {
+  text-align: left;
+}
+
+.home-logo {
+  background-image: url('./assets/ie-logo-white.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 50px;
+  margin: 0 auto 2rem;
+}
+
+.financial-metrics-layout {
+  display: flex;
+  padding: 0 1rem;
+}
+
+.financial-metrics-layout .left {
+  flex-basis: 40%;
+}
+
+.financial-metrics-layout .right {
+  flex-basis: 60%;
+}
+
+.financial-metrics-chart {
+  background-image: url('./assets/financial-metrics-chart-lg.png');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+  height: 256px;
+}
+
+.unstyled {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 20px 0;
+}
+
+.centered {
+  text-align: left;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.logo-grid-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.logo-grid-block a {
+  transition: transform 0.15s;
+}
+
+.logo-grid-block a:hover {
+  transform: scale(1.1);
+}
+
+.logo-grid-block img {
+  max-height: 100px;
+  max-width: 200px;
+}
